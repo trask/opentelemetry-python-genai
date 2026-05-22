@@ -45,6 +45,16 @@
       "schedule": [
         "before 8am on Tuesday"
       ]
+    },
+    {
+      // Do not let Renovate's github-actions manager bump the `python-version`
+      // literals embedded in our workflow files. The CI Python matrix is
+      // governed by tox.ini's `envlist`; the literals in workflows are either
+      // matrix axes (test.yml) or a single tooling Python (lint.yml, misc.yml,
+      // changelog.yml) that we bump manually when adopting a new release.
+      "matchManagers": ["github-actions"],
+      "matchDepNames": ["python"],
+      "enabled": false
     }
   ],
   "labels": [
